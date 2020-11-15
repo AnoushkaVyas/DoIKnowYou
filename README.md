@@ -1,2 +1,2 @@
 # DoIKnowYou
-DIKY:Do I Know You?
+Face recognition via client-server application.
