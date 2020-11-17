@@ -40,11 +40,7 @@ print("\r[LISN] Socket is now listening")
 
 name = input('Enter your name :')
 print('Welcome to DoIKnowYou. This is server.')
-# change_port = input('The default port is 4444. Do you want to change the port? Answer "y" or "n" only:')
-# if change_port == 'y':
-	# ask_port = input('[CAUTION] Do not Ask for an occupied PORT. Enter PORT number (<8888):')
-	# PORT = np.int32(ask_port)
-	# print('[CAUTION] Enter the same PORT number on client side also.')
+
 def listen():
 	while True:
 		print('\r[CONN] Waiting for client...')

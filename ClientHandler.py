@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-# Import the socket library
 import socket
 import pickle
 import struct

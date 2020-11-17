@@ -10,13 +10,6 @@ import connUtils
 PORT = 5000
 name = input('Enter your name :')
 print('Welcome to DoIKnowYou. This is client.')
-# change_port = input('The default port is 4444. Do you want to change the port? Answer "y" or "n" only:')
-# if change_port == 'y':
-	# ask_port = input('[CAUTION] Enter same PORT number as Server(<8888):')
-	# PORT = np.int32(ask_port)
-	# print('Your input PORT is ',PORT)
-
-
 
 while True:
 	sys.stdout.write('%s@[Client] -> ' %name)
