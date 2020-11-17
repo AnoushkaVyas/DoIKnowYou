@@ -1,7 +1,3 @@
-''' usage :
-1- python3 face_detect.py -v path_to_video
-2- python3 face_detect.py -i path_to_image
-'''
 import cv2
 import os
 import sys

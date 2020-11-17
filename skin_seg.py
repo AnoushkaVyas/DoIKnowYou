@@ -1,11 +1,3 @@
-"""
-the following script implements the "RGB-H-CbCr Skin Colour Model for Human Face Detection" 
-algorithm for skin detection/extraction based on the paper published by
-Nusirwan Anwar bin Abdul Rahman, Kit Chong Wei and John See 
-Faculty of Information Technology, Multimedia University
-johnsee@mmu.edu.my 
-"""
-
 import sys
 import cv2
 import numpy as np
