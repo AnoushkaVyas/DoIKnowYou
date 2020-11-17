@@ -45,6 +45,21 @@ print('Welcome to DoIKnowYou. This is server.')
 	# ask_port = input('[CAUTION] Do not Ask for an occupied PORT. Enter PORT number (<8888):')
 	# PORT = np.int32(ask_port)
 	# print('[CAUTION] Enter the same PORT number on client side also.')
+def listen():
+	while True:
+		print('\r[CONN] Waiting for client...')
+		# Wait to accept a connection - blocking call
+		client_socket, addr = server_socket.accept()
+		# print the socket object : ip addr and port nb : client info
+		print('\r[CONN] Connected from ip: {} and port : {} '.format(addr[0],addr[1]))
+		t = threading.Thread(target=ClientHandler.handle_client, args=(client_socket,))
+		#t.daemon = True
+		t.start()
+		if t.is_alive(): 
+		    pass 
+		else: 
+		    print('[THREAD] Serviced Thread.')
+		    break 
 
 while True:
 	sys.stdout.write('%s@[Server] -> ' %name)
@@ -56,4 +71,4 @@ while True:
 		break
 
 	if (command == 'listen'):
-		listen()#TODO
+		listen()
