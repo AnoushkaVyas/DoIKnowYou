@@ -99,7 +99,7 @@ A 4 client request session to showcase Multithreading:
 We have trained face recognition on two videos of actors Will Smith and Emma Watson, because we are in *The Pursuit of Happyness* and *Hermione Granger* is :two_hearts: The videos are provided in the ```videos``` folder for retraining. Feel free to add more and go wild.
 
 ### References
-*Note: You need IEEE Access for accessing these papers. We strongly discourage pirated websites. Please support the research community.
+*Note: You need IEEE Access for accessing these papers. We strongly discourage pirated websites. Please support the research community.*
 * [P. Viola and M. Jones, "Rapid object detection using a boosted cascade of simple features," Proceedings of the 2001 IEEE Computer Society Conference on Computer Vision and Pattern Recognition. CVPR 2001, Kauai, HI, USA, 2001, pp. I-I, doi: 10.1109/CVPR.2001.990517.](https://ieeexplore.ieee.org/document/990517)
 * [*RGB-H-CbCr Skin Colour Model for Human Face Detection*, Nusirwan Anwar bin Abdul Rahman et al., Faculty of Information Technology, Multimedia University.](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.718.1964&rep=rep1&type=pdf)
 * [L. Cuimei, Q. Zhiliang, J. Nan and W. Jianhua, "Human face detection algorithm via Haar cascade classifier combined with three additional classifiers," 2017 13th IEEE International Conference on Electronic Measurement & Instruments (ICEMI), Yangzhou, 2017, pp. 483-487, doi: 10.1109/ICEMI.2017.8265863.](https://ieeexplore.ieee.org/document/8265863)
