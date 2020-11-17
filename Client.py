@@ -1,6 +1,3 @@
-''' usage :
-python3 Client.py -v videos/video3.mkv
-'''
 import socket
 import numpy as np
 import cv2
@@ -44,4 +41,8 @@ while True:
 	CHUNK_SIZE = 4 * 1024	 
 	encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]
 
-	
+	# socket for sending and receiving images
+	Client_Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	print("\r[CONN] Connecting to server @ ip = {} and port = {}".format(TCP_IP,TCP_PORT))
+	Client_Socket.connect((TCP_IP, TCP_PORT))
+	print("\r[CONN] Client connected successfully!")
