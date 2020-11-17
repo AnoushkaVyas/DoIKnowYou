@@ -8,6 +8,12 @@ import threading
 import ClientHandler
 import connUtils
 
+import sys
+import os
+import time
+import matplotlib.pyplot as plt
+from Train import *
+
 def quit(command):
     sckt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sckt.connect((HOST, PORT))
@@ -40,7 +46,11 @@ print("\r[LISN] Socket is now listening")
 
 name = input('Enter your name :')
 print('Welcome to DoIKnowYou. This is server.')
-
+# change_port = input('The default port is 4444. Do you want to change the port? Answer "y" or "n" only:')
+# if change_port == 'y':
+	# ask_port = input('[CAUTION] Do not Ask for an occupied PORT. Enter PORT number (<8888):')
+	# PORT = np.int32(ask_port)
+	# print('[CAUTION] Enter the same PORT number on client side also.')
 def listen():
 	while True:
 		print('\r[CONN] Waiting for client...')
@@ -57,6 +67,31 @@ def listen():
 		    print('[THREAD] Serviced Thread.')
 		    break 
 
+def train(video, dataset_name):
+	face_cascade = './Haar_Cascades/haarcascade_frontalface_default.xml'
+	right_eye_cascade = './Haar_Cascades/haarcascade_righteye_2splits.xml'
+	left_eye_cascade = './Haar_Cascades/haarcascade_lefteye_2splits.xml'
+	if not (os.path.isfile(face_cascade)):
+		raise RuntimeError("%s: not found" % face_cascade)
+	if not (os.path.isfile(right_eye_cascade)):
+		raise RuntimeError("%s: not found" % right_eye_cascade)
+	if not (os.path.isfile(left_eye_cascade)):
+		raise RuntimeError("%s: not found" % left_eye_cascade)
+	samples = 50
+	dataset_name = 'dataset/'
+	file_name = 'train.yaml'
+	radius = 1
+	neighbour = 8
+	grid_x = 8
+	grid_y = 8
+	var = list([radius,neighbour,grid_x,grid_y])
+	model = Train_Model(face_cascade,right_eye_cascade,left_eye_cascade,var)
+	#create a dataset for further model training
+	model.create_dataset(samples,video,dataset_name)
+	#Training the model
+	model.train(dataset_name,file_name)
+	
+
 while True:
 	sys.stdout.write('%s@[Server] -> ' %name)
 	sys.stdout.flush()
@@ -66,5 +101,20 @@ while True:
 		print('[WARNING] Quitting Server side. If you sent this command in between an operation you might experience bugs. You have been warned.')
 		break
 
-	if (command == 'listen'):
+	elif (command == 'listen'):
 		listen()
+
+	elif (command == 'trainVideo'):
+		video_name = input('Enter the location to your video : ')
+		dataset_name = input("What would you like to call this person? : ")
+		video = cv2.VideoCapture(video_name)
+		train(video)
+
+	elif (command == 'trainWebc'):
+		print('[WARNING] We hope you have a webcam and it is detected by your machine. Running at 640 x 480.')
+		priint('Say Cheese !')
+		video = cv2.VideoCapture(0)
+		video.set(3, 640)
+		video.set(4, 480)
+		dataset_name = input("What would you like me to call you as? : ")
+		train(video, dataset_name)
