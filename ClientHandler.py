@@ -35,7 +35,25 @@ def handle_client(client_socket):
 		struct_size = struct.calcsize("l")
 		img_size= client_socket.recv(struct_size)
 		
+		if len(img_size) == 0:
+			break
+		img_size = struct.unpack("l", img_size)[0]
 		
+		while len(data) < img_size:
+			data += client_socket.recv(CHUNK_SIZE)
+			if len(data) == 0 :
+				break
+		
+		frame_data = data[:img_size]
+		data = data[img_size:]
+		frame=pickle.loads(frame_data)
+		frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
+		predicted = model.predict(frame,Face_Detect,size1,size2)
+		result, frame = cv2.imencode('.jpeg', predicted, encode_param)
+		
+		data = pickle.dumps(frame, 0)
+		size = len(data)
+		client_socket.sendall(struct.pack("l",size) + data)
 
 	client_socket.close()
 	print('\r[SCKT] Socket closed...')
