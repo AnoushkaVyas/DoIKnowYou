@@ -42,7 +42,7 @@ print('Socket bind successfully')
 print("\r[BIND] Socket binded to : ",PORT)
 # Listen for connections : allow only 5 connection
 server_socket.listen(5)
-print("\r[LISN] Socket is now listening") 	 
+print("\r[RDY] Socket is now deployed") 	 
 
 name = input('Enter your name :')
 print('Welcome to DoIKnowYou. This is server.')
@@ -102,6 +102,7 @@ while True:
 		break
 
 	elif (command == 'listen'):
+		print("\r[LISN] Socket is now listening")
 		listen()
 
 	elif (command == 'trainVideo'):
