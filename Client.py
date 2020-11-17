@@ -46,3 +46,31 @@ while True:
 	print("\r[CONN] Connecting to server @ ip = {} and port = {}".format(TCP_IP,TCP_PORT))
 	Client_Socket.connect((TCP_IP, TCP_PORT))
 	print("\r[CONN] Client connected successfully!")
+
+	while True:
+		# Capture, decode and return the next frame of the video
+		ret, image = video.read()
+		if not ret:
+			break
+		result, frame = cv2.imencode('.jpeg', image, encode_param)
+		# Returns the bytes object of the serialized object.
+		data = pickle.dumps(frame, 0)
+		size = len(data)
+		Client_Socket.sendall(struct.pack("l",size) + data)
+		print("\r[SCKT] Image is sent successfully ")
+		data = b""
+		# struct_size is 8 bytes
+		struct_size = struct.calcsize("l")
+		
+		img_size= Client_Socket.recv(struct_size)
+		img_size = struct.unpack("l", img_size)[0]
+		print(img_size)
+		while len(data) < img_size:
+			data += Client_Socket.recv(CHUNK_SIZE)
+		frame_data = data[:img_size]
+		data = data[img_size:]
+		frame=pickle.loads(frame_data)
+		frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
+		cv2.imshow('Video', frame)	
+		if cv2.waitKey (1) & 0xff == 27:
+			break
