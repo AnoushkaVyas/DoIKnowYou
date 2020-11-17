@@ -23,7 +23,7 @@ while True:
 		video = cv2.VideoCapture(video_name)
 	elif (command == 'webcam'):
 		print('[WARNING] We hope you have a webcam and it is detected by your machine. Running at 640 x 480.')
-		priint('Say Cheese !')
+		print('Say Cheese !')
 		video = cv2.VideoCapture(0)
 		video.set(3, 640)
 		video.set(4, 480)
